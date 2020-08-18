@@ -10,15 +10,15 @@ function init(){
 	generateDemoData(data.names[0]); 
 	generateBarPlot(data.names[0]);
 	generateBubblePlot(data.names[0]);
+	generateGauge(data.names[0]);
 	});
-
-
 }
 
 function optionChanged(id){
 	generateBarPlot(id);
-	generateBubblePlot(id)
+	generateBubblePlot(id);
 	generateDemoData(id);
+	generateGauge(id);
 }; 
 
 function generateDemoData(id){
@@ -88,5 +88,22 @@ function generateBubblePlot(id){
 		Plotly.newPlot("bubble",data)
 	});
 };
+
+function generateGauge(id){
+	d3.json("samples.json").then(data => {
+		var sampleInfo = data.samples; 
+
+		var filteredData = sampleInfo.filter(sample = sample.id === )[0]; 
+
+
+		var data = [{
+			domain: {x: filteredData.sample_values, y: filteredData.otu_ids},
+			value: 270, 
+			mode: "gauge+number"
+		}]
+
+		Plotly.newPlot("gauge",data)
+	})
+}
 
 init();
