@@ -101,7 +101,7 @@ function generateGauge(id){
 
 		var data = [{
 			type: "indicator",
-			title: { text: "Belly Button Washing Frequency Scrubs per Week" },
+			title: { text: "Belly Button Washing Frequency" },
 			value: wfreq,
 			mode: "gauge+number",
 			text: ["0-1", "1-2","2-3", "3-4", "4-5","5-6","6-7", "7-8", "8-9"],
