@@ -97,9 +97,24 @@ function generateGauge(id){
 
 
 		var data = [{
-			domain: {x: [0,1], y: [0,1]},
 			type: "indicator",
-			mode: "gauge+number"
+			value: 5,
+			mode: "gauge+number",
+			text: ["0-1", "1-2","2-3", "3-4", "4-5","5-6","6-7", "7-8", "8-9"],
+			gauge: {
+				axis: {range: [0,9], tickwidth: 1},
+				steps: [
+					{ range: [0,1], color:"#ffffff"}, 
+					{ range: [1,2], color:"#f0f5f5"},
+					{ range: [2,3], color:"#e0ebeb"},
+					{ range: [3,4], color:"#d1e0e0"},
+					{ range: [4,5], color:"#c2d6d6"},
+					{ range: [5,6], color:"#b3cccc"},
+					{ range: [6,7], color:"#a3c2c2"},
+					{ range: [7,8], color:"#94b8b8"},
+					{ range: [8,9], color:"#85adad"}
+				]
+			}
 		}]
 
 		var layout =[{
