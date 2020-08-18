@@ -93,7 +93,7 @@ function generateGauge(id){
 	d3.json("samples.json").then(data => {
 		var sampleInfo = data.samples; 
 
-		var filteredData = sampleInfo.filter(sample = sample.id === )[0]; 
+		var filteredData = sampleInfo.filter(sample => sample.id === )[0]; 
 
 
 		var data = [{
