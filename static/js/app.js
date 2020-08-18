@@ -54,7 +54,7 @@ function generateBarPlot(id){
 		var filteredData = sampleInfo.filter(sample => sample.id === id)[0]; 
 		var samples = filteredData.sample_values.slice(0,10);
 		var otus = filteredData.otu_ids.slice(0,10);
-		var otusIDs = otus.map(d => "OTU " + d);
+		var otusIDs = otus.map(d => `OTU ${d}`);
 		var labels = filteredData.otu_labels.slice(0,10);
 
 		var data = [{
@@ -76,7 +76,7 @@ function generateBarPlot(id){
 
 //Function takes one argument id from the dropdown
 //Grabs the sameple data and filters by the id
-//Filtered data is then used to crate the bubble plot
+//Filtered data is then used to create the bubble plot
 function generateBubblePlot(id){ 
 	d3.json("samples.json").then(data => {
 		var sampleInfo = data.samples; 
@@ -98,7 +98,7 @@ function generateBubblePlot(id){
 			} 	
 		}]; 
 
-		Plotly.newPlot("bubble",data)
+		Plotly.newPlot("bubble",data);
 	});
 };
 
@@ -133,7 +133,7 @@ function generateGauge(id){
 					{ range: [8,9], color:"#85adad"}
 				]
 			}
-		}]
+		}];
 
 		var layout =[{
 			height: 400, 
@@ -141,8 +141,8 @@ function generateGauge(id){
 		}]
 
 		Plotly.newPlot("gauge",data, layout)
-	})
-}
+	});
+};
 
 //Calls init when the page loads
 init();
