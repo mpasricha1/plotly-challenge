@@ -7,9 +7,9 @@ function init(){
 		data.names.forEach(function(name){
 			dropDownMenu.append("option").text(name).property("value");
 		})
-	console.log(data.names[0]);
 	generateDemoData(data.names[0]); 
-	generateBarPlot(data.names[0])
+	generateBarPlot(data.names[0]);
+	generateBubblePlot(data.names[0]);
 	});
 
 
@@ -17,6 +17,7 @@ function init(){
 
 function optionChanged(id){
 	generateBarPlot(id);
+	generateBubblePlot(id)
 	generateDemoData(id);
 }; 
 
@@ -40,29 +41,52 @@ function generateBarPlot(id){
 		var sampleInfo = data.samples; 
 
 		var filteredData = sampleInfo.filter(sample => sample.id === id)[0]; 
-		var samples = filteredData.sample_values.slice(0,10)
-		console.log(samples)
-		var otus = filteredData.otu_ids.slice(0,10)
-		var labels = filteredData.otu_labels.slice(0,10)
+		var samples = filteredData.sample_values.slice(0,10);
+		var otus = filteredData.otu_ids.slice(0,10);
+		var otusIDs = otus.map(d => "OTU " + d);
+		var labels = filteredData.otu_labels.slice(0,10);
 
 		var data = [{
 			x: samples,
-			y: otus,
+			y: otusIDs,
 			text: labels,
 			type: "bar",
 			orientation: "h"
 		}]; 
 
-		var layout = { 
-			yaxis: {
-        		autorange: true,
-        		type: "linear"
-      		}
+		var layout = {
+			title: `OTU's For Sample ${id}`,
 		};
 		
 		Plotly.newPlot("bar", data, layout);
 
-	})
-}
+	});
+}; 
+
+function generateBubblePlot(id){ 
+	d3.json("samples.json").then(data => {
+		var sampleInfo = data.samples; 
+
+		var filteredData = sampleInfo.filter(sample => sample.id === id)[0];
+
+		var samples = filteredData.sample_values; 
+		var otus = filteredData.otu_ids; 
+		var labels = filteredData.otu_labels; 
+
+		var data = [{
+			x: otus, 
+			y: samples,
+			text: labels,
+			mode: "markers", 
+			marker: {
+				size: samples, 
+				color: otus,
+			} 
+			
+		}]; 
+
+		Plotly.newPlot("bubble",data)
+	});
+};
 
 init();
