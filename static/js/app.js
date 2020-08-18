@@ -98,11 +98,20 @@ function generateGauge(id){
 
 		var data = [{
 			domain: {x: [0,1], y: [0,1]},
-			value: 270, 
+			type: "indicator",
+			gauge: { 
+				shape: "bullet", 
+				range: [1,10]
+			},
 			mode: "gauge+number"
 		}]
 
-		Plotly.newPlot("gauge",data)
+		var layout =[{
+			height: 500, 
+			width: 500
+		}]
+
+		Plotly.newPlot("gauge",data, layout)
 	})
 }
 
