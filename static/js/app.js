@@ -91,14 +91,18 @@ function generateBubblePlot(id){
 
 function generateGauge(id){
 	d3.json("samples.json").then(data => {
-		var sampleInfo = data.samples; 
+		var sampleInfo = data.metadata; 
 
-		var filteredData = sampleInfo.filter(sample => sample.id === id)[0]; 
+
+		var filteredData = sampleInfo.filter(sample => sample.id.toString() === id)[0]; 
+
+		var wfreq = filteredData.wfreq;
 
 
 		var data = [{
 			type: "indicator",
-			value: 5,
+			title: { text: "Belly Button Washing Frequency Scrubs per Week" },
+			value: wfreq,
 			mode: "gauge+number",
 			text: ["0-1", "1-2","2-3", "3-4", "4-5","5-6","6-7", "7-8", "8-9"],
 			gauge: {
@@ -118,8 +122,8 @@ function generateGauge(id){
 		}]
 
 		var layout =[{
-			height: 500, 
-			width: 500
+			height: 400, 
+			width: 400
 		}]
 
 		Plotly.newPlot("gauge",data, layout)
