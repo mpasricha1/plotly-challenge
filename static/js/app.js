@@ -99,10 +99,6 @@ function generateGauge(id){
 		var data = [{
 			domain: {x: [0,1], y: [0,1]},
 			type: "indicator",
-			gauge: { 
-				shape: "bullet", 
-				range: [1,10]
-			},
 			mode: "gauge+number"
 		}]
 
