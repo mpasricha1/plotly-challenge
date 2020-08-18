@@ -97,7 +97,7 @@ function generateGauge(id){
 
 
 		var data = [{
-			domain: {x: filteredData.sample_values, y: filteredData.otu_ids},
+			domain: {x: [0,1], y: [0,1]},
 			value: 270, 
 			mode: "gauge+number"
 		}]
