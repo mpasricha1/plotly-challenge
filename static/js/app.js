@@ -1,3 +1,6 @@
+// Initialized the page with the ID of the first value in the data source
+// This also sets up the drop down menu for the page 
+// 4 functions are called, one for each plot
 function init(){ 
 	var dropDownMenu = d3.select("#selDataset"); 
 
@@ -14,6 +17,8 @@ function init(){
 	});
 }
 
+// This function handles what happens when a drop down item is selected
+//Function takes one argument id from the dropdown
 function optionChanged(id){
 	generateBarPlot(id);
 	generateBubblePlot(id);
@@ -21,6 +26,9 @@ function optionChanged(id){
 	generateGauge(id);
 }; 
 
+//Function takes one argument the id from the dropdown
+//Grabs the metadata from the dataset and filter by the id 
+//Loops through the filtered values and appends the key/value pair to the demo box
 function generateDemoData(id){
 	var demoBox = d3.select("#sample-metadata")
 
@@ -35,6 +43,9 @@ function generateDemoData(id){
 	});
 };
 
+//Function takes one argument id from the dropdown
+//Grabs the sample data from the dataset and takes only the top 10 results filters by the id 
+//Data is then use to create the bar chart
 function generateBarPlot(id){
 
 	d3.json("samples.json").then(data => { 
@@ -63,6 +74,9 @@ function generateBarPlot(id){
 	});
 }; 
 
+//Function takes one argument id from the dropdown
+//Grabs the sameple data and filters by the id
+//Filtered data is then used to crate the bubble plot
 function generateBubblePlot(id){ 
 	d3.json("samples.json").then(data => {
 		var sampleInfo = data.samples; 
@@ -81,23 +95,23 @@ function generateBubblePlot(id){
 			marker: {
 				size: samples, 
 				color: otus,
-			} 
-			
+			} 	
 		}]; 
 
 		Plotly.newPlot("bubble",data)
 	});
 };
 
+//Function takes one argument id from the dropdown
+//Grabs the metadata and filters by the id
+//Filtered data is then used to create the Gauge 
 function generateGauge(id){
 	d3.json("samples.json").then(data => {
 		var sampleInfo = data.metadata; 
 
-
 		var filteredData = sampleInfo.filter(sample => sample.id.toString() === id)[0]; 
 
 		var wfreq = filteredData.wfreq;
-
 
 		var data = [{
 			type: "indicator",
@@ -130,4 +144,5 @@ function generateGauge(id){
 	})
 }
 
+//Calls init when the page loads
 init();
