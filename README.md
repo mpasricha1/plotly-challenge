@@ -12,7 +12,7 @@
 
 <p>The main script is a javascript file that creates all the plots. Each plot is created by its own function.
    This allows for each plot to be build independently if needed in the future. A drop down menu is provided to 
-   switch between all the samples in the data set. The dashboard was deployed using github pages and can be viewed by
-   clicking the link below</p>
+   switch between all the samples in the data set. Along with the plots, a box was create to contain the metadata 
+   for each sample. The dashboard was deployed using github pages and can be viewed by clicking the link below.</p>
 
 <a href="https://mpasricha1.github.io/plotly-challenge/">Belly Button Biodiversity</a>
