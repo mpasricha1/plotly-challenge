@@ -7,7 +7,7 @@
 <ul>
 <li>Bar Chart for OTU's For Sample</li>
 <li>A Gauge for Belly Button Washing Frequency</li>
-<liBubble Chart of each sample</li>
+<li>Bubble Chart of each sample</li>
 </ul> 
 
 <p>The main script is a javascript file that creates all the plots. Each plot is created by its own function.
